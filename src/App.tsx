@@ -10,6 +10,9 @@ function App() {
             <Footer />
             <Header />
             <Technologies />
+            <Footer />
+            <Header />
+            <Technologies />
         </div>
     );
 }
