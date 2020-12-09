@@ -5,7 +5,6 @@ import Post from './Post/Post';
 
 
 function MyPosts() {
-
     return (
         <div>
             my posts

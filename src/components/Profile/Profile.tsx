@@ -6,7 +6,7 @@ import MyPosts from './MyPosts/MyPosts';
 
 function Profile() {
     return (
-        <div className={s.content}>
+        <div>
             <div>
                 <img
                     src="https://www.vespa.com/mediaObject/vespa/travel/travel-nha-trang/02-Opening-Image/Opening-Image/original/Opening-Image.jpg"
