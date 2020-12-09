@@ -1,0 +1,9 @@
+.item {
+    color: #ff0000;
+}
+
+.item img {
+    height: 80px;
+    weight: 80px;
+    border-radius: 40px;
+}
