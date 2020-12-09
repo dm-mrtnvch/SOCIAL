@@ -10,27 +10,4 @@
   'n c'
 }
 
-.header {
-  grid-area: h;
-  background-color: cadetblue;
-
-}
-
-.header img {
-  width: 80px;
-  border-radius: 50%;
-  padding: 3px;
-}
-
-.nav {
-  grid-area: n;
-  background-color: cornflowerblue;
-  width: 200px;
-  padding: 10px;
-}
-
-.content {
-  grid-area: c;
-  background-color: darkgray;
-}
 
