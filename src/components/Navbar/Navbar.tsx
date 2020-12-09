@@ -6,6 +6,7 @@ console.log(s)
 function Navbar() {
     return (
         <div className={s.nav}>
+
             <div className={s.item}>
                 <a href={'/profile'}>Profile</a>
             </div>
