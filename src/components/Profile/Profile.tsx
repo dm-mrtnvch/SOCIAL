@@ -1,5 +1,6 @@
 import React from 'react';
 import s from './Profile.module.css';
+import MyPosts from './MyPosts/MyPosts';
 
 
 
@@ -14,18 +15,7 @@ function Profile() {
             <div>
                 ava + descr
             </div>
-            <div>
-                my posts
-                <div>new post</div>
-                <div className={'posts'}>
-                    <div className={s.item}>
-                        post 1
-                    </div>
-                    <div className={`${s.item} ${s.second}`}>
-                        post 2
-                    </div>
-                </div>
-            </div>
+            <MyPosts />
         </div>
     )
 }
