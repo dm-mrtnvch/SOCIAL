@@ -1,20 +1,14 @@
 import React from 'react';
 import s from './Profile.module.css';
 import MyPosts from './MyPosts/MyPosts';
+import ProfileInfo from './ProfileInfo/ProfileInfo';
 
 
 
 function Profile() {
     return (
         <div>
-            <div>
-                <img
-                    src="https://www.vespa.com/mediaObject/vespa/travel/travel-nha-trang/02-Opening-Image/Opening-Image/original/Opening-Image.jpg"
-                    alt="sea"/>
-            </div>
-            <div>
-                ava + descr
-            </div>
+            <ProfileInfo />
             <MyPosts />
         </div>
     )
