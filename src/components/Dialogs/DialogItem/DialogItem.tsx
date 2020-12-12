@@ -7,7 +7,7 @@ type DialogItemType = {
     id: number
 }
 
-function DialogItem(props: DialogItemType) {
+export function DialogItem(props: DialogItemType) {
 
     let path = '/dialogs/' + props.id
 

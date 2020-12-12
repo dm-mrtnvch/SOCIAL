@@ -3,11 +3,11 @@ import s from '../Dialogs.module.css'
 import {NavLink} from 'react-router-dom';
 
 
-type MessageType = {
+type MessagePropsType = {
     message: string
 }
 
-function Message(props: MessageType) {
+function Message(props: MessagePropsType) {
     return (
         <div className={s.message}>{props.message}</div>
     )
