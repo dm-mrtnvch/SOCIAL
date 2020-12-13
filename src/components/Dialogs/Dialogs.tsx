@@ -1,25 +1,14 @@
 import React from 'react';
 import s from './Dialogs.module.css'
-import {NavLink} from 'react-router-dom';
 import DialogItem from './DialogItem/DialogItem';
 import Message from './Message/Message';
+import {DialogType, MessageType} from '../../resux/state';
 
 
 type DialogsPropsType = {
-    dialogsData: Array<DialogsDataPropsType>
-    messagesData: Array<MessagesDataPropsType>
+    dialogsData: Array<DialogType>
+    messagesData: Array<MessageType>
 }
-
-export type DialogsDataPropsType = {
-    id: number
-    name: string
-}
-
-export type MessagesDataPropsType = {
-    id: number
-    message: string
-}
-
 
 function Dialogs(props: DialogsPropsType) {
 
@@ -39,7 +28,6 @@ function Dialogs(props: DialogsPropsType) {
         </div>
     )
 }
-
 
 export default Dialogs;
 

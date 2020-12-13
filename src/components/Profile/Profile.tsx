@@ -1,12 +1,14 @@
 import React from 'react';
-import s from './Profile.module.css'
 import MyPosts from './MyPosts/MyPosts';
 import ProfileInfo from './ProfileInfo/ProfileInfo';
-import {PostsDataPropsType} from './MyPosts/MyPosts'
-import {MyPostsPropsType} from './MyPosts/MyPosts'
+import {PostType} from '../../resux/state';
 
 
-function Profile(props: MyPostsPropsType) {
+type ProfilePropsType = {
+    posts: Array<PostType>
+}
+
+function Profile(props: ProfilePropsType) {
     return (
         <div>
             <ProfileInfo />

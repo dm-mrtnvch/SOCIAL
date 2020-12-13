@@ -8,15 +8,11 @@ import {BrowserRouter, Route} from 'react-router-dom';
 import News from './components/News/News';
 import Music from './components/Music/Music';
 import Settings from './components/Settings/Settings';
-import {PostsDataPropsType} from './components/Profile/MyPosts/MyPosts';
-import {DialogsDataPropsType} from './components/Dialogs/Dialogs';
-import {MessagesDataPropsType} from './components/Dialogs/Dialogs';
+import {StateType} from './resux/state';
 
 
 type AppPropsType = {
-    posts: Array<PostsDataPropsType>
-    dialogs: Array<DialogsDataPropsType>
-    messages: Array<MessagesDataPropsType>
+    appState: StateType
 }
 
 function App(props: AppPropsType) {
@@ -26,8 +22,10 @@ function App(props: AppPropsType) {
                 <Header/>
                 <Navbar/>
                 <div className={'app-wrapper-content'}>
-                    <Route path={'/profile'} render={ () => <Profile posts={props.posts} />}/>
-                    <Route path={'/dialogs'} render={ () => <Dialogs dialogsData={props.dialogs} messagesData={props.messages}/>}/>
+                    <Route path={'/profile'} render={ () => <Profile posts={props.appState.profilePage.posts} />}/>
+                    <Route path={'/dialogs'} render={ () => <Dialogs
+                        dialogsData={props.appState.dialogsPage.dialogs}
+                        messagesData={props.appState.dialogsPage.messages}/>}/>
                     <Route path={'/news'} render={ () => <News />}/>
                     <Route path={'/music'} render={ () => <Music />}/>
                     <Route path={'/settings'} render={ () => <Settings />}/>
@@ -36,6 +34,5 @@ function App(props: AppPropsType) {
         </BrowserRouter>
     );
 }
-
 
 export default App;
