@@ -16,6 +16,7 @@ export type PostType = {
 export type ProfilePageType = {
     posts: Array<PostType>
 }
+
 export type DialogsPageType = {
     messages: Array<MessageType>
     dialogs: Array<DialogType>
@@ -25,6 +26,7 @@ export type StateType  = {
     profilePage: ProfilePageType
     dialogsPage: DialogsPageType
 }
+
 let state: StateType = {
     profilePage: {
         posts: [

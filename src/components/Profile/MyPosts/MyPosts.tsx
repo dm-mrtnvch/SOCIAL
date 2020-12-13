@@ -14,21 +14,28 @@ export type PostsDataPropsType = {
 
 function MyPosts(props: MyPostsPropsType) {
 
-    let postsElements = props.posts.map( (post) => <Post message={post.message} likesCount={post.likesCount}/>)
+    let postsElements = props.posts.map((post) => <Post message={post.message} likesCount={post.likesCount}/>)
+
+    let newPostElement: any = React.createRef()
+
+    let addPost = () => {
+        let text = newPostElement.current.value
+        alert(text)
+    }
 
     return (
         <div className={s.postsBlock}>
             <h3>my posts</h3>
             <div>
                 <div>
-                    <textarea name="" id="" cols={20} rows={2}></textarea>
+                    <textarea ref={newPostElement} ></textarea>
                 </div>
                 <div>
-                    <button>add post</button>
+                    <button onClick={addPost}> add post</button>
                 </div>
             </div>
             <div className={s.posts}>
-                { postsElements }
+                {postsElements}
             </div>
         </div>
     )
