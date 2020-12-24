@@ -6,6 +6,7 @@ import {PostType} from '../../redux/state';
 
 type ProfilePropsType = {
     posts: Array<PostType>
+
 }
 
 function Profile(props: ProfilePropsType) {

@@ -28,7 +28,7 @@ function MyPosts(props: MyPostsPropsType) {
             <h3>my posts</h3>
             <div>
                 <div>
-                    <textarea ref={newPostElement} ></textarea>
+                    <textarea ref={newPostElement}></textarea>
                 </div>
                 <div>
                     <button onClick={addPost}> add post</button>
