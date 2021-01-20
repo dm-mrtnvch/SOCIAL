@@ -55,11 +55,11 @@ let state: StateType = {
 }
 
 
-export let addPost = (postMessage: string) => {
-    let newPost = {
-        id: 5,
-        message: postMessage,
-        likesCount: 0
+export let addPost = (postText: string) => {
+    let newPost: PostType = {
+        id: 6,
+        message: postText,
+        likesCount: 5
     }
     state.profilePage.posts.push(newPost)
 }

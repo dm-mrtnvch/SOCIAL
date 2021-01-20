@@ -3,16 +3,16 @@ import s from '../Dialogs.module.css'
 import {NavLink} from 'react-router-dom';
 
 
-type MessagePropsType = {
+export type MessagePropsType = {
     message: string
 }
 
 function Message(props: MessagePropsType) {
 
-    let newMessageElement: any = React.createRef()
+    let newMessageElement = React.createRef<HTMLTextAreaElement>()
 
     let addMessage = () => {
-        let text = newMessageElement.current.value
+        let text = newMessageElement.current?.value
         alert(text)
     }
 
