@@ -17,6 +17,7 @@ export type PostType = {
 
 export type ProfilePageType = {
     posts: Array<PostType>
+    messageForNewPost: string
 }
 
 export type DialogsPageType = {
@@ -31,6 +32,7 @@ export type StateType  = {
 
 let state: StateType = {
     profilePage: {
+        messageForNewPost: 'sfsd',
         posts: [
             {id: 1, message: 'how are you', likesCount: 15},
             {id: 2, message: 'it\'s my first post', likesCount: 10},
@@ -64,7 +66,11 @@ export const addPost = (postText: string) => {
         likesCount: 5
     }
     state.profilePage.posts.push(newPost)
+    renderTree(state)
+}
 
+export const changeNewText = (newText: string) => {
+    state.profilePage.messageForNewPost = newText
     renderTree(state)
 }
 
