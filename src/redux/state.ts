@@ -1,4 +1,6 @@
-import {renderTree} from '../render';
+let renderTree = () => {
+    console.log('state was changed')
+}
 
 export type DialogType = {
     id: number
@@ -66,12 +68,16 @@ export const addPost = (postText: string) => {
         likesCount: 5
     }
     state.profilePage.posts.push(newPost)
-    renderTree(state)
+    renderTree()
 }
 
 export const changeNewText = (newText: string) => {
     state.profilePage.messageForNewPost = newText
-    renderTree(state)
+    renderTree()
+}
+
+export let subscribe = (observer: () => void) => {
+    renderTree = observer
 }
 
 export default state;
