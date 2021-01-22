@@ -1,23 +1,29 @@
 import React from 'react';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
-import state, {addPost, changeNewText, subscribe} from './redux/state';
+import state from './redux/state';
 import {PostType, StateType} from './redux/state';
 import ReactDOM from 'react-dom';
 import App from './App';
+import store from './redux/state'
+import observer from './redux/state'
 
 export const renderTree = (state: StateType) => {
     ReactDOM.render(
         <App appState={state}
-             addPost={addPost}
-             changeNewText={changeNewText}
+             addPost={store.addPost}
+             changeNewText={store.changeNewText}
+             store={store}
         />,
         document.getElementById('root'))
 }
 
-renderTree(state)
 
-subscribe(() => {alert('raz')})
+// store.subscribe(renderTree)
+// renderTree()
+
+
+// subscribe(() => {alert('raz')})
 
 // // If you want to start measuring pe  rformance in your app, pass a function
 // // to log results (for example: reportWebVitals(console.log))

@@ -1,7 +1,3 @@
-let renderTree = () => {
-    console.log('state was changed')
-}
-
 export type DialogType = {
     id: number
     name: string
@@ -27,57 +23,72 @@ export type DialogsPageType = {
     dialogs: Array<DialogType>
 }
 
-export type StateType  = {
+export type StateType = {
     profilePage: ProfilePageType
     dialogsPage: DialogsPageType
 }
 
-let state: StateType = {
-    profilePage: {
-        messageForNewPost: 'sfsd',
-        posts: [
-            {id: 1, message: 'how are you', likesCount: 15},
-            {id: 2, message: 'it\'s my first post', likesCount: 10},
-            {id: 3, message: 'dva', likesCount: 3},
-            {id: 4, message: 'tri', likesCount: 7},
-            {id: 5, message: 'chet', likesCount: 6}
-        ]
+export type StoreType = {
+    _state: StateType
+    changeNewText: (newText: string) => void
+    addPost: (postText: string) => void
+    subscribe: (observer: () => void) => void
+    _renderTree: () => void
+    getState: () => StateType
+}
+
+const store: StoreType = {
+    _state: {
+        profilePage: {
+            messageForNewPost: 'sfsd',
+            posts: [
+                {id: 1, message: 'how are you', likesCount: 15},
+                {id: 2, message: 'it\'s my first post', likesCount: 10},
+                {id: 3, message: 'dva', likesCount: 3},
+                {id: 4, message: 'tri', likesCount: 7},
+                {id: 5, message: 'chet', likesCount: 6}
+            ]
+        },
+        dialogsPage: {
+            messages: [
+                {id: 1, message: 'raz'},
+                {id: 2, message: 'dva'},
+                {id: 3, message: 'tri'}
+            ],
+            dialogs: [
+                {id: 1, name: 'dimych'},
+                {id: 2, name: 'andrew'},
+                {id: 3, name: 'sveta'},
+                {id: 4, name: 'sasha'},
+                {id: 5, name: 'viktor'},
+                {id: 6, name: 'valera'}
+            ]
+        }
     },
-    dialogsPage: {
-        messages: [
-            {id: 1, message: 'raz'},
-            {id: 2, message: 'dva'},
-            {id: 3, message: 'tri'}
-        ],
-        dialogs: [
-            {id: 1, name: 'dimych'},
-            {id: 2, name: 'andrew'},
-            {id: 3, name: 'sveta'},
-            {id: 4, name: 'sasha'},
-            {id: 5, name: 'viktor'},
-            {id: 6, name: 'valera'}
-        ]
+    changeNewText(newText: string) {
+        this._state.profilePage.messageForNewPost = newText
+        this._renderTree()
+    },
+    addPost(postText: string) {
+        let newPost: PostType = {
+            id: 6,
+            message: postText,
+            likesCount: 5
+        }
+        this._state.profilePage.posts.push(newPost)
+        this._renderTree()
+    },
+    subscribe(observer) {
+        this._renderTree = observer
+    },
+    _renderTree() {
+        console.log('state was changed')
+    },
+    getState() {
+        return this._state
     }
+
 }
 
 
-export const addPost = (postText: string) => {
-    let newPost: PostType = {
-        id: 6,
-        message: postText,
-        likesCount: 5
-    }
-    state.profilePage.posts.push(newPost)
-    renderTree()
-}
-
-export const changeNewText = (newText: string) => {
-    state.profilePage.messageForNewPost = newText
-    renderTree()
-}
-
-export let subscribe = (observer: () => void) => {
-    renderTree = observer
-}
-
-export default state;
+export default store;
