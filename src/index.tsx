@@ -11,16 +11,15 @@ import observer from './redux/state'
 export const renderTree = (state: StateType) => {
     ReactDOM.render(
         <App appState={state}
-             addPost={store.addPost}
-             changeNewText={store.changeNewText}
+             addPost={store.addPost.bind(store)}
+             changeNewText={store.changeNewText.bind(store)}
              store={store}
         />,
         document.getElementById('root'))
 }
 
 
-// store.subscribe(renderTree)
-// renderTree()
+renderTree(store.getState())
 
 
 // subscribe(() => {alert('raz')})

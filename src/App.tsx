@@ -32,7 +32,7 @@ function App(props: AppPropsType) {
                 <div className={'app-wrapper-content'}>
                     <Route path={'/profile'} render={() => <Profile
                         posts={state.profilePage.posts}
-                        addPost={props.store.addPost.bind(props.store)}
+                        dispatch={props.store.dispatch.bind(store)}
                         message={state.profilePage.messageForNewPost}
                         post={state.profilePage.posts}
                         changeNewText={props.store.changeNewText.bind(props.store)}/>}/>

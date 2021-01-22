@@ -30,12 +30,26 @@ export type StateType = {
 
 export type StoreType = {
     _state: StateType
-    changeNewText: (newText: string) => void
-    addPost: (postText: string) => void
+    // changeNewText: (newText: string) => void
+    // addPost: (postText: string) => void
     subscribe: (observer: () => void) => void
     _renderTree: () => void
     getState: () => StateType
+    dispatch: (action: addPostActionType | changeNewTextActionType) => void
 }
+
+export type addPostActionType = {
+    type: 'ADD-POST'
+    postText: string
+}
+
+export type changeNewTextActionType = {
+    type: 'CHANGE-NEW-TEXT'
+    newText: string
+}
+
+export type ActionsTypes = addPostActionType | changeNewTextActionType
+
 
 const store: StoreType = {
     _state: {
@@ -65,19 +79,6 @@ const store: StoreType = {
             ]
         }
     },
-    changeNewText(newText: string) {
-        this._state.profilePage.messageForNewPost = newText
-        this._renderTree()
-    },
-    addPost(postText: string) {
-        let newPost: PostType = {
-            id: 6,
-            message: postText,
-            likesCount: 5
-        }
-        this._state.profilePage.posts.push(newPost)
-        this._renderTree()
-    },
     subscribe(observer) {
         this._renderTree = observer
     },
@@ -86,8 +87,22 @@ const store: StoreType = {
     },
     getState() {
         return this._state
-    }
+    },
+    dispatch(action) {
+        if(action.type === 'ADD-POST') {
+            let newPost: PostType = {
+                id: 6,
+                message: action.postText,
+                likesCount: 5
+            }
+            this._state.profilePage.posts.push(newPost)
+            this._renderTree()
+        } else if(action.type === 'CHANGE-NEW-TEXT') {
+            this._state.profilePage.messageForNewPost = action.newText
+            this._renderTree()
+        }
 
+    }
 }
 
 
