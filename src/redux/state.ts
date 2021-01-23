@@ -21,6 +21,7 @@ export type ProfilePageType = {
 export type DialogsPageType = {
     messages: Array<MessageType>
     dialogs: Array<DialogType>
+    newMessageBody: string
 }
 
 export type StateType = {
@@ -40,7 +41,13 @@ export type StoreType = {
 
 export type addPostActionType = ReturnType<typeof addPostAC>
 export type changeNewTextActionType = ReturnType<typeof changeNewTextAC>
-export type ActionsTypes = ReturnType<typeof addPostAC> | ReturnType<typeof changeNewTextAC>
+export type updateNewMessageBody = ReturnType<typeof updateNewMessageBodyAC>
+export type ActionsTypes = ReturnType<typeof addPostAC> | ReturnType<typeof changeNewTextAC> | ReturnType<typeof updateNewMessageBodyAC>
+
+const ADD_POST = 'ADD-POST'
+const CHANGE_NEW_TEXT = 'CHANGE-NEW-TEXT'
+const UPDATE_NEW_MESSAGE_BODY = 'UPDATE-NEW-MESSAGE-BODY'
+const SEND_MESSAGE = 'SEND-MESSAGE'
 
 
 const store: StoreType = {
@@ -68,7 +75,8 @@ const store: StoreType = {
                 {id: 4, name: 'sasha'},
                 {id: 5, name: 'viktor'},
                 {id: 6, name: 'valera'}
-            ]
+            ],
+            newMessageBody: ''
         }
     },
     subscribe(observer) {
@@ -81,19 +89,27 @@ const store: StoreType = {
         return this._state
     },
     dispatch(action) {
-        if(action.type === 'ADD-POST') {
+        if(action.type === ADD_POST) {
             let newPost: PostType = {
                 id: 6,
                 message: action.postText,
                 likesCount: 5
             }
             this._state.profilePage.posts.push(newPost)
-            this._renderTree()
-        } else if(action.type === 'CHANGE-NEW-TEXT') {
+            this.subscribe(this._state)
+        } else if(action.type === CHANGE_NEW_TEXT) {
             this._state.profilePage.messageForNewPost = action.newText
-            this._renderTree()
-        }
+            this.subscribe(this._state)
+        } else if(action.type === UPDATE_NEW_MESSAGE_BODY) {
+            this._state.dialogsPage.newMessageBody = action.body
+            this.subscribe(this._state)
+        } else if(action.type === SEND_MESSAGE) {
+            let body = this._state.dialogsPage.newMessageBody
+            this._state.dialogsPage.newMessageBody = ''
+            this._state.dialogsPage.messages.push({id: 6, message: body})
+            this.subscribe(this._state)
 
+        }
     }
 }
 
@@ -112,6 +128,14 @@ export const changeNewTextAC = (newText: string) => {
         newText: newText
     } as const
 }
+
+export const updateNewMessageBodyAC = (body: string) => {
+    return {
+        type: 'UPDATE-NEW-MESSAGE-BODY',
+        body: body
+    }
+}
+
 
 
 export default store;

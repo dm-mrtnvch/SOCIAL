@@ -11,6 +11,7 @@ type ProfilePropsType = {
     message: string
     changeNewText: (newText: string) => void
     dispatch: (action: ActionsTypes) => void
+
 }
 
 function Profile(props: ProfilePropsType) {
