@@ -77,7 +77,8 @@ const store: StoreType = {
                 {id: 6, name: 'valera'}
             ],
             newMessageBody: ''
-        }
+        },
+        sidebar: {}
     },
     subscribe(observer) {
         this._renderTree = observer
